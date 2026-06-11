@@ -1,4 +1,5 @@
 const Order = require('../models/Order');
+const Product = require('../models/Product');
 const sendEmail = require('../utils/sendEmail');
 
 const addOrderItems = async (req, res) => {
@@ -61,7 +62,33 @@ const updateOrderStatus = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
     if (order) {
-      order.status = req.body.status || order.status;
+      const requestedStatus = req.body.status || order.status;
+      const previousStatus = order.status;
+
+      order.status = requestedStatus;
+
+      if (requestedStatus === 'Delivered' && previousStatus !== 'Delivered' && !order.isStockUpdated) {
+        for (const item of order.items) {
+          const product = await Product.findById(item.productId);
+          if (product) {
+            product.stock = Math.max(product.stock - item.qty, 0);
+            await product.save();
+          }
+        }
+        order.isStockUpdated = true;
+      }
+
+      if (previousStatus === 'Delivered' && requestedStatus !== 'Delivered' && order.isStockUpdated) {
+        for (const item of order.items) {
+          const product = await Product.findById(item.productId);
+          if (product) {
+            product.stock = product.stock + item.qty;
+            await product.save();
+          }
+        }
+        order.isStockUpdated = false;
+      }
+
       const updatedOrder = await order.save();
       res.json(updatedOrder);
     } else {

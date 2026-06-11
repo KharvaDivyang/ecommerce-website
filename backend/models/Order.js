@@ -19,6 +19,7 @@ const orderSchema = new mongoose.Schema({
   },
   paymentId: { type: String },
   status: { type: String, enum: ['Pending', 'Shipped', 'Delivered'], default: 'Pending' },
+  isStockUpdated: { type: Boolean, default: false },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Order', orderSchema);

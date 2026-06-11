@@ -73,3 +73,60 @@
 .auth-form a:hover {
   text-decoration: underline;
 }
+
+.auth-note {
+  color: #a1a1aa;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.popup-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 360px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+  color: #fff;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+}
+
+.popup-notification.success .popup-content {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(30, 64, 175, 0.95));
+}
+
+.popup-notification.error .popup-content {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(134, 48, 176, 0.95));
+}
+
+.popup-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.error-message {
+  color: #f87171;
+  background: rgba(254, 226, 226, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 20px 0;
+  text-align: center;
+}

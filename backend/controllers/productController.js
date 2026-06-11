@@ -28,6 +28,18 @@ const createProduct = async (req, res) => {
     const { name, description, price, category, stock } = req.body;
     let imageUrl = '';
     if (req.file) {
+      if (
+        !process.env.CLOUDINARY_CLOUD_NAME ||
+        !process.env.CLOUDINARY_API_KEY ||
+        !process.env.CLOUDINARY_API_SECRET ||
+        process.env.CLOUDINARY_CLOUD_NAME === 'your_cloud_name' ||
+        process.env.CLOUDINARY_API_KEY === 'your_api_key' ||
+        process.env.CLOUDINARY_API_SECRET === 'your_api_secret'
+      ) {
+        return res.status(500).json({
+          message: 'Cloudinary is not configured. Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET in backend/.env.'
+        });
+      }
       const result = await cloudinary.uploader.upload(req.file.path);
       imageUrl = result.secure_url;
     }
