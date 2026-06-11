@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div align="center">
   <img src="https://cdn-icons-png.flaticon.com/512/3514/3514491.png" alt="ShopNest Logo" width="80" />
   <h1>ShopNest - Full-Stack MERN E-Commerce App</h1>
@@ -75,7 +74,3 @@ The server codebase features a seamless fallback mechanic leveraging Node `proce
 ## 📄 Postman Documentations
 This repository includes a fully-scaffolded API testing toolkit: **`ShopNest_Postman_Collection.json`**. 
 Simply Import this file directly into the local Postman IDE. It features variables like `{{token}}` properly mapped to effortlessly check protected admin/user/order payloads. Happy coding!
-=======
-# ecommerce-website
-A modern E-Commerce website built with HTML, CSS, JavaScript, React, Node.js, and MongoDB featuring product listings, shopping cart, user authentication, and secure checkout.
->>>>>>> 7c3172edf77e662ff2e5c2a09b173f1c1f7c64d7
